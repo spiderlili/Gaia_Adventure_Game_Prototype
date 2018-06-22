@@ -54,11 +54,12 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
     private void Die(){
-	    if(playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy"))){
+	    if(playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards"))){
 		    //camera go black
 		    isAlive = false;
 		    playerAnimator.SetTrigger("Die");
 		    GetComponent<Rigidbody2D>().velocity = deathKick;
+		    FindObjectOfType<GameSessionManager>().ProcessPlayerDeath();
 	    }
 	   
     }
