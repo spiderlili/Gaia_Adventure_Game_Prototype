@@ -52,11 +52,14 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"))) {
             playerAnimator.SetBool("Climbing", false);
+	    playerRigidBody.gravityScaleAtStart = gravityScaleAtStart;
             return;
         }
         float controlThrow = Input.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, controlThrow * climbSpeed);
         playerRigidBody.velocity = climbVelocity;
+	playerRigidBody.gravityScaleAtStart = 0f; //zero gravity when the player climbing on a ladder
+		
         bool playerHasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
         playerAnimator.SetBool("Climbing", playerHasVerticalSpeed);
     }
