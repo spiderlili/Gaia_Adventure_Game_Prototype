@@ -8,11 +8,10 @@ public class EnemyMovement : MonoBehaviour {
     //state
     bool isAlive = true;
     
-
     //cached component references
     Rigidbody2D enemyRigidBody;
-    Animator playerAnimator;
-    Collider2D playerCollider2D;
+    Animator enemyAnimator;
+    Collider2D enemyCollider2D;
     float gravityScaleAtStart;
 
 	// Use this for initialization
