@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] Vector2 deathKick = new Vector2(250f, 250f); //tweak arount these values for dramatic death kick motion 
     //state
     bool isAlive = true;
 
@@ -26,10 +27,14 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	if(!isAlive){
+		return; //turn off the player's ability to control the character
+	}
         Run();
         Climb();
         Jump();
         FlipSprite();
+	Die();
 	}
     private void Jump() {
         if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
@@ -46,6 +51,16 @@ public class PlayerMovement : MonoBehaviour {
 
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
         playerAnimator.SetBool("Running", playerHasHorizontalSpeed);
+    }
+	
+    private void Die(){
+	    if(playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy"))){
+		    //camera go black
+		    isAlive = false;
+		    playerAnimator.SetTrigger("Die");
+		    GetComponent<Rigidbody2D>().velocity = deathKick;
+	    }
+	   
     }
 
     private void Climb()
