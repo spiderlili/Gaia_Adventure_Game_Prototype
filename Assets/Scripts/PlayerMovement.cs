@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Climb()
     {
         if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Climbing"))) {
-            playerAnimator.SetBool("Climbing", false);
+            playerAnimator.SetBool("Climbing", false); //stop the climb animation if exits the state
 	    playerRigidBody.gravityScaleAtStart = gravityScaleAtStart;
             return;
         }
