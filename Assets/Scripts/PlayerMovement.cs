@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerCollider2D = GetComponent<CapsuleCollider2D>();
+<<<<<<< HEAD
         playerFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerRigidBody.gravityScale;
 
@@ -31,10 +32,23 @@ public class PlayerMovement : MonoBehaviour
         if (!isAlive){
             return; //turn off the player's ability to control the character if they died
         }
+=======
+	playerFeet = GetComponent<BoxCollider2D>();
+        gravityScaleAtStart = playerRigidBody.gravityScale;
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+	if(!isAlive){
+		return; //turn off the player's ability to control the character
+	}
+>>>>>>> c80d4f9f27bcec847d8a2f067e550be99d0e2597
         Run();
         Climb();
         Jump();
         FlipSprite();
+<<<<<<< HEAD
         Die();
     }
 
@@ -44,6 +58,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
         {
+=======
+	Die();
+	}
+    private void Jump() {
+        if (!playerFeet.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        if (Input.GetButtonDown("Jump")) {
+>>>>>>> c80d4f9f27bcec847d8a2f067e550be99d0e2597
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             playerRigidBody.velocity += jumpVelocityToAdd;
         }
@@ -57,7 +78,19 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
         playerAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
     }
+	
+    private void Die(){
+	    if(playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards"))){
+		    //camera go black
+		    isAlive = false;
+		    playerAnimator.SetTrigger("Die");
+		    GetComponent<Rigidbody2D>().velocity = deathKick;
+		    FindObjectOfType<GameSessionManager>().ProcessPlayerDeath();
+	    }
+	   
+    }
 
+<<<<<<< HEAD
     private void Die(){
         if (playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
@@ -74,13 +107,25 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetBool("isClimbing", false); //stop the climb animation if exits the state
             playerRigidBody.gravityScale = gravityScaleAtStart;
+=======
+    private void Climb()
+    {
+        if (!playerFeet.IsTouchingLayers(LayerMask.GetMask("Climbing"))) {
+            playerAnimator.SetBool("Climbing", false); //stop the climb animation if exits the state
+	    playerRigidBody.gravityScaleAtStart = gravityScaleAtStart;
+>>>>>>> c80d4f9f27bcec847d8a2f067e550be99d0e2597
             return;
         }
         float controlThrow = Input.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, controlThrow * climbSpeed);
         playerRigidBody.velocity = climbVelocity;
+<<<<<<< HEAD
         playerRigidBody.gravityScale = 0f; //zero gravity when the player climbing on a ladder
 
+=======
+	playerRigidBody.gravityScaleAtStart = 0f; //zero gravity when the player climbing on a ladder
+		
+>>>>>>> c80d4f9f27bcec847d8a2f067e550be99d0e2597
         bool playerHasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
         playerAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
     }
