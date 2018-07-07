@@ -18,9 +18,9 @@ TagManager:
   - Player
   - Foreground
   - Climbing
-  - 
-  - 
-  - 
+  - Enemy
+  - Hazards
+  - Interactables
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 2704521223
     locked: 0
+  - name: Enemy
+    uniqueID: 953190155
+    locked: 0
   - name: Foreground
     uniqueID: 1983890177
     locked: 0
@@ -52,4 +55,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 691710715
+    locked: 0
+  - name: Hazards
+    uniqueID: 3794944783
+    locked: 0
+  - name: Interactables
+    uniqueID: 3958880623
     locked: 0
