@@ -12,8 +12,8 @@ Compose soundtracks for each level<br/>
 Level Design x 3<br/>
 Record sound effects and voiceovers<br/>
 Make level endpoint portal particle system<br/>
-Design enemies<br/>
+Design enemies spritesheet<br/>
 Design creature spritesheet<br/>
 Deisgn & implement dialogue UI<br/>
-Design character portrait<br/>
+Design character portraits<br/>
 Design powerups<br/>
