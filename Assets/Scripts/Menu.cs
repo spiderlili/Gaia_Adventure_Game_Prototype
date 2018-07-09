@@ -14,4 +14,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void WinReplay() {
+        FindObjectOfType<GameSessionManager>().DestroyGameSession();
+        SceneManager.LoadScene(0);
+    }
 }

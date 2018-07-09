@@ -49,17 +49,25 @@ public class GameSessionManager : MonoBehaviour
         }
     }
 
-    private void ResetGameSession()
-    {
-        SceneManager.LoadScene(0);
-        Destroy(gameObject);
-    }
-
     private void TakeLife()
     {
         playerLives--;
-        livesText.text = playerLives.ToString();
+        livesText.text = livesText.text = "Lives: " + playerLives.ToString();
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
+
+    private void ResetGameSession()
+    {
+        var dieSceneIndex = SceneManager.sceneCountInBuildSettings;
+        //load die scene - the last scene in the build settings
+        SceneManager.LoadScene(dieSceneIndex - 1);
+        Destroy(gameObject);
+    }
+
+    public void DestroyGameSession()
+    {
+        Destroy(gameObject);
+    }
+
 }
