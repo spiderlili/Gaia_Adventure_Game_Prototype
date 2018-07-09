@@ -7,10 +7,8 @@ Level Design Diagrams x 3<br/>
 Implement scene fade in/out effect<br/>
 Design & implement UI for start screen<br/>
 Design & implement UI for death screen<br/>
-Implement dialogue system<br/>
-Write dialogues<br/>
+Design & implement infinite scrolling parallax backgrounds<br/>
 Compose soundtracks for each level<br/>
-Record sound effects and voiceovers<br/>
 Make level endpoint portal particle system<br/>
 Design enemies spritesheet<br/>
 Design creature spritesheet<br/>
@@ -19,4 +17,7 @@ Design character portraits<br/>
 Design powerups<br/>
 Show Level Progress bar<br/>
 Health Bar Prefab<br/>
+Implement dialogue system<br/>
+Write dialogues<br/>
+Record sound effects and voiceovers<br/>
 Implement dynamic music
