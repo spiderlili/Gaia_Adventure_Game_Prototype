@@ -16,7 +16,7 @@ Deisgn & implement dialogue UI<br/>
 Design character portraits<br/>
 Design powerups<br/>
 Show Level Progress bar<br/>
-Health Bar Prefab<br/>
+Design and implement a Health Bar Prefab component - look for gameobject's transform(offset & scale by XY)<br/>
 Implement dialogue system<br/>
 Write dialogues<br/>
 Record sound effects and voiceovers<br/>
