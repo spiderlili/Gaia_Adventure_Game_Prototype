@@ -17,3 +17,6 @@ Design creature spritesheet<br/>
 Deisgn & implement dialogue UI<br/>
 Design character portraits<br/>
 Design powerups<br/>
+Show Level Progress bar<br/>
+Health Bar Prefab<br/>
+Implement dynamic music
