@@ -3,13 +3,15 @@
 A 2D platform puzzle game for PC and web browsers. The player controls Gaia, a magical girl traversing a landscape of different worlds, in search for her lost bird who had been snatched by a mysterious monster. As the player encounters and rescues trapped magical creatures along the way, they unlock valuable items and information such as keys, clues, character skins and access to hidden worlds.
 
 ## TO DO LIST:<br/>
-Level Design Diagrams x 3<br/>
-Implement scene fade in/out effect<br/>
+Make level endpoint portal particle system with physics<br/>
+Design & implement infinite scrolling parallax backgrounds<br/>
+Fade in / out music transition (main menu & 3 levels)
+Implement scene fade in/out UI effect<br/>
 Design & implement UI for start screen<br/>
 Design & implement UI for death screen<br/>
-Design & implement infinite scrolling parallax backgrounds<br/>
+Make map UI<br/>
+Level Design Diagrams x 3<br/>
 Compose soundtracks for each level<br/>
-Make level endpoint portal particle system<br/>
 Design enemies spritesheet<br/>
 Design creature spritesheet<br/>
 Deisgn & implement dialogue UI<br/>
