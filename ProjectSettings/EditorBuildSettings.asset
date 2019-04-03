@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f5817d1af9d62c648b2364967049add9
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Waterfall Level.unity
     guid: 05411afeb9ff0a948bac90f80ac30251
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Mountain Level.unity
     guid: a82d7deb945b0e443a348865eebe9a1c
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
