@@ -10,7 +10,8 @@ public class GameSessionManager : MonoBehaviour
     [SerializeField] int score = 0;
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
-    [SerializeField] IconHP heartsUI; 
+    [SerializeField] IconHP heartsUI;
+    [SerializeField] HealthBarPortraitStyle healthBarPortraitStyle;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class GameSessionManager : MonoBehaviour
     private void TakeLife()
     {
         heartsUI.TakeAwayLife();
+        healthBarPortraitStyle.RemoveHealth(334);
         playerLives--;
         livesText.text = livesText.text = "Lives: " + playerLives.ToString();
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
