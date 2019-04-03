@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class LightRays2DAbstract:MonoBehaviour{
+public abstract class LightRays2DAbstract : MonoBehaviour{
 
 	private Material mat;
 

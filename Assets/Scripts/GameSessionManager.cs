@@ -10,6 +10,7 @@ public class GameSessionManager : MonoBehaviour
     [SerializeField] int score = 0;
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
+    [SerializeField] IconHP heartsUI; 
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class GameSessionManager : MonoBehaviour
     {
         if (playerLives > 1)
         {
-            TakeLife();
+            TakeLife();           
         }
         else
         {
@@ -51,6 +52,7 @@ public class GameSessionManager : MonoBehaviour
 
     private void TakeLife()
     {
+        heartsUI.TakeAwayLife();
         playerLives--;
         livesText.text = livesText.text = "Lives: " + playerLives.ToString();
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
