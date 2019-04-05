@@ -8,11 +8,13 @@ public class Menu : MonoBehaviour
     public void StartFirstLevel()
     {
         SceneManager.LoadScene(1);
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.Out, 1));
     }
 
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.Out, 0));
     }
 
     public void OptionsMenu() {
@@ -26,5 +28,6 @@ public class Menu : MonoBehaviour
     public void WinReplay() {
         FindObjectOfType<GameSessionManager>().DestroyGameSession();
         SceneManager.LoadScene(0);
+        StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.Out, 0));
     }
 }
