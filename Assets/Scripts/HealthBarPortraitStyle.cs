@@ -8,28 +8,28 @@ public class HealthBarPortraitStyle : MonoBehaviour
     public Image linearBar;
     public Image radialBar;
     public int maxHealth = 1000;
-    private int _health;
+    public int health;
 
     void Start()
     {
-        _health = maxHealth;
+        health = maxHealth;
     }
     public void AddHealth(int value)
     {
-        _health += value;
-        if (_health > maxHealth)
+        health += value;
+        if (health > maxHealth)
         {
-            _health = maxHealth;
+            health = maxHealth;
         }
         UpdateHealthBar();
     }
 
     public bool RemoveHealth(int value)
     {
-        _health -= value;
-        if (_health <= 0)
+        health -= value;
+        if (health <= 0)
         {
-            _health = 0;
+            health = 0;
             UpdateHealthBar();
             return true;
         }
@@ -37,8 +37,14 @@ public class HealthBarPortraitStyle : MonoBehaviour
         return false;
     }
 
+    public void RestoreFullHealth() {
+        health = maxHealth;
+        linearBar.fillAmount = 1.0f;
+        radialBar.fillAmount = 0.75f;
+    }
+    
     private void UpdateHealthBar() {
-        float ratio = _health * 1f / maxHealth;
+        float ratio = health * 1f / maxHealth;
         Debug.Log(ratio);
         if (ratio > 0.6)
         {

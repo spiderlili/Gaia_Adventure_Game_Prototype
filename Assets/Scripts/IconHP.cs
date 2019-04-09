@@ -24,7 +24,7 @@ public class IconHP : MonoBehaviour {
         if (fillAmount >= 1.0f / lives * lives) hp3.GetComponent<ShowHeartHP>().showHP = true;
         else hp3.GetComponent<ShowHeartHP>().showHP = false;
 
-        if (fillAmount >= 1.0f / lives * (lives-1)) hp2.GetComponent<ShowHeartHP>().showHP = true;
+        if (fillAmount >= 1.0f / lives * (lives-2)) hp2.GetComponent<ShowHeartHP>().showHP = true;
         else hp2.GetComponent<ShowHeartHP>().showHP = false;
 
         if (fillAmount > 0.0f) hp1.GetComponent<ShowHeartHP>().showHP = true;

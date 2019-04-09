@@ -10,6 +10,7 @@ public class GameSessionManager : MonoBehaviour
     [SerializeField] int score = 0;
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
+    [SerializeField] Text healthText;
     [SerializeField] IconHP heartsUI;
     [SerializeField] HealthBarPortraitStyle healthBarPortraitStyle;
 
@@ -30,7 +31,7 @@ public class GameSessionManager : MonoBehaviour
     {
         livesText.text = "Lives: " + playerLives.ToString();
         scoreText.text = "Score: " + score.ToString();
-
+        healthText.text = "Health: " + healthBarPortraitStyle.health.ToString();
     }
 
     public void AddToScore(int pointsToAdd)
@@ -43,7 +44,7 @@ public class GameSessionManager : MonoBehaviour
     {
         if (playerLives > 1)
         {
-            TakeLife();           
+            TakeLife();
         }
         else
         {
@@ -52,10 +53,15 @@ public class GameSessionManager : MonoBehaviour
     }
 
     private void TakeLife()
-    {
-        heartsUI.TakeAwayLife();
+    { 
         healthBarPortraitStyle.RemoveHealth(334);
-        playerLives--;
+
+        if (healthBarPortraitStyle.health <= 0) {
+            playerLives--;
+            heartsUI.TakeAwayLife();
+            healthBarPortraitStyle.RestoreFullHealth();
+        }
+        healthText.text = "Health: " + healthBarPortraitStyle.health.ToString();
         livesText.text = livesText.text = "Lives: " + playerLives.ToString();
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
