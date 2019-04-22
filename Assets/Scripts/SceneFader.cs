@@ -16,6 +16,7 @@ public class SceneFader : MonoBehaviour
     #region MONOBHEAVIOR
     void OnEnable()
     {
+        fadeOutUIImage.gameObject.SetActive(true);
         StartCoroutine(Fade(FadeDirection.Out));
     }
     #endregion

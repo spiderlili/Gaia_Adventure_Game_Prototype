@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float runSpeed = 5f;
-    [SerializeField] float jumpSpeed = 7f;
-    [SerializeField] float climbSpeed = 5f;
-    [SerializeField] Vector2 deathKick = new Vector2(10f, 10f); //tweak arount these values for dramatic death kick motion 
+    [SerializeField] float _runSpeed = 5.0f;
+    [SerializeField] float _jumpSpeed = 6.0f;
+    [SerializeField] float _climbSpeed = 5.0f;
+    [SerializeField] Vector2 _deathKick = new Vector2(10f, 10f); //tweak arount these values for dramatic death kick motion 
+    [SerializeField] bool _onJumpPad = false;
+    [SerializeField] float _jumpPadMultiplier = 1.5f;
     //state
     bool isAlive = true;
 
@@ -43,15 +45,33 @@ public class PlayerMovement : MonoBehaviour
             return; //prevent the player from being able to jump if they hit the wall
         }
         if (Input.GetButtonDown("Jump"))
-        {
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+        {          
+             Vector2 jumpVelocityToAdd = new Vector2(0f, _onJumpPad ? _jumpSpeed * _jumpPadMultiplier : _jumpSpeed);
             playerRigidBody.velocity += jumpVelocityToAdd;
+            Debug.Log("jumpVelocityToAdd: " + jumpVelocityToAdd);
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("JumpPad")){
+            _onJumpPad = true;
+            Debug.Log("onjumppad true");
+        }
+
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("JumpPad")){
+            _onJumpPad = false;
+            Debug.Log("onjumppad false");
+        }
+
+    }
     private void Run(){
         float controlThrow = Input.GetAxis("Horizontal"); //value between -1 and 1
-        Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, playerRigidBody.velocity.y);
+        Vector2 playerVelocity = new Vector2(controlThrow * _runSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = playerVelocity;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
@@ -64,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             //camera go black
             isAlive = false;
             playerAnimator.SetTrigger("isDying");
-            GetComponent<Rigidbody2D>().velocity = deathKick;
+            GetComponent<Rigidbody2D>().velocity = _deathKick;
             FindObjectOfType<GameSessionManager>().ProcessPlayerDeath();
         }
     }
@@ -77,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         float controlThrow = Input.GetAxis("Vertical");
-        Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, controlThrow * climbSpeed);
+        Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, controlThrow * _climbSpeed);
         playerRigidBody.velocity = climbVelocity;
         playerRigidBody.gravityScale = 0f; //zero gravity when the player climbing on a ladder
 
