@@ -1055,7 +1055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621659750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4929988, y: 2.3791628, z: -10.023784}
+  m_LocalPosition: {x: 1.4930141, y: 2.3764386, z: -10.023784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 299890992}
@@ -1114,8 +1114,8 @@ MonoBehaviour:
   VignetteOuterValue: 1
   VignetteInnerValue: 0
   VignetteInnerValueDistance: 0
-  VignetteOuterValueDistance: 0.7
-  VignetteMode: 1
+  VignetteOuterValueDistance: 0.8612726
+  VignetteMode: 2
   VignetteCenter: {x: 0.5, y: 0.5}
   VignetteInnerColor: {r: 0, g: 0, b: 0, a: 0}
   VignetteOuterColor: {r: 0, g: 0, b: 0, a: 1}
@@ -3067,7 +3067,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
+      scalar: 0.26
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -3648,7 +3648,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7427,7 +7427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406075534}
   m_LocalRotation: {x: -0.00000014901161, y: 0.7071068, z: -0.7071068, w: -0.00000014901161}
-  m_LocalPosition: {x: 6.12, y: 10.9, z: 0}
+  m_LocalPosition: {x: 6.12, y: 10.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
