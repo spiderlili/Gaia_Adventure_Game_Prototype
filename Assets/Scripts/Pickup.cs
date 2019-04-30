@@ -15,15 +15,13 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameSessionManager != null) {
+        if (gameSessionManager != null && collision.gameObject.CompareTag("Player")) {
             FindObjectOfType<GameSessionManager>().AddToScore(pointsForPickup);
+            //play SFX at the camera position
+            //creates an audio instance at the 3D point of the gameobject, independent of the game object which spawned it.
+            AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
+            //Debug.Log("Collision Detected");
+            Destroy(gameObject);
         }
-        
-        //play SFX at the camera position
-        //creates an audio instance at the 3D point of the gameobject, independent of the game object which spawned it.
-        AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
-        //Debug.Log("Collision Detected");
-        Destroy(gameObject);
-
     }
 }

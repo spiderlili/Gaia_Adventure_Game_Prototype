@@ -14,6 +14,9 @@ public class EnemyMovement : MonoBehaviour
     Animator enemyAnimator;
     Collider2D enemyCollider2D;
     float gravityScaleAtStart;
+    [SerializeField]public ParticleSystem smokeEffect;
+    [SerializeField]public int health = 100;
+    [SerializeField]public GameObject deathFX;
 
     // Use this for initialization
     void Start()
@@ -34,6 +37,16 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            EnemyKill();
+        }
+    }
+
     bool IsFacingRight()
     {
         return transform.localScale.x > 0;
@@ -42,5 +55,12 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidBody.velocity.x)), 1f);
+    }
+
+    public void EnemyKill()
+    {
+        smokeEffect.Stop();
+        Instantiate(deathFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

@@ -31,14 +31,14 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 8cb2b2514c70f0b44900666dae2e5ecf, type: 3}
-    totalSpriteSurfaceArea: 131072
+    totalSpriteSurfaceArea: 104579
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: dfe965c083a2b1045843a9a64dca60b4, type: 3}
+  - {fileID: 21300002, guid: 35db29735b30c2542b5dfd3d825d5f38, type: 3}
   - {fileID: 21300000, guid: 35db29735b30c2542b5dfd3d825d5f38, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Cartoon cloud2
-  - Cartoon cloud
+  - Cartoon cloud_1
+  - Cartoon cloud_0
   m_Tag: VFX
   m_IsVariant: 0

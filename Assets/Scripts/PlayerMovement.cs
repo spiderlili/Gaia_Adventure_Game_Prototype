@@ -10,8 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 _deathKick = new Vector2(10f, 10f); //tweak arount these values for dramatic death kick motion 
     [SerializeField] bool _onJumpPad = false;
     [SerializeField] float _jumpPadMultiplier = 1.5f;
+    public Weapon weapon;
     //state
     bool isAlive = true;
+    public bool isLeft = false;
 
     //cached component references
     Rigidbody2D playerRigidBody;
@@ -29,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void Shoot()
+    {
+        weapon.Shoot();
+    }
+
     void Update(){ 
         if (!isAlive){
             return; //turn off the player's ability to control the character if they died
@@ -38,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         FlipSprite();
         Die();
+        Shoot();
     }
 
     private void Jump(){
@@ -112,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //reverse the furrent scaling of x asis
             transform.localScale = new Vector2(Mathf.Sign(playerRigidBody.velocity.x), 1f);
+            isLeft = true;
         }
     }
 }
