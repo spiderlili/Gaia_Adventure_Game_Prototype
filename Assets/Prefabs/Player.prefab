@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 61988862894450420}
   - component: {fileID: 2903690170155315016}
   - component: {fileID: 2376514916159539753}
+  - component: {fileID: 1833707508032065}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -142,8 +143,9 @@ MonoBehaviour:
   _dashSpeed: 7
   _dashTime: 3
   startDashTime: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 2376514916159539753}
   dashVFX: {fileID: 7510811449614498675, guid: 5216dfc8ff2ac0b49b9f72ec9baf4e94, type: 3}
+  ghostFX: {fileID: 1833707508032065}
   isLeft: 0
 --- !u!61 &61988862894450420
 BoxCollider2D:
@@ -206,6 +208,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 7465667823780181379}
   bullet: {fileID: 4633620326395941446, guid: 7954918019061e44c8ef9631b0bfca0a, type: 3}
+--- !u!114 &1833707508032065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833707508032064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a746f05c9ef4f0a49a3c3a574aa3244a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostDelay: 0.3
+  ghost: {fileID: 606603805257030910, guid: d908d228975310c4986bb842bc7f6978, type: 3}
+  ghostDoubleImageFX: {fileID: 1833707508032065}
+  makeGhost: 0
 --- !u!1 &7618522114165844942
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +249,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7618522114165844942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.421, y: -0.21, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0.37, y: -0.21, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4521318027251090}
   m_RootOrder: 0
@@ -274,7 +292,7 @@ SpriteRenderer:
   m_SortingLayerID: -336086673
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 20df27a90bd77264cb9b397b49dd9837, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9f9ad4dbb02ba9419cc661d412be4a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

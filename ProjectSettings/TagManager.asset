@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - JumpPad
+  - Projectiles
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -17,11 +17,16 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]public ParticleSystem smokeEffect;
     [SerializeField]public int health = 100;
     [SerializeField]public GameObject deathFX;
+    [SerializeField]private Material matRedHit;
+    private Material matDefault;
+    SpriteRenderer spriteRenderer;
 
     // Use this for initialization
     void Start()
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        matDefault = spriteRenderer.material;
     }
 
     // Update is called once per frame
@@ -55,12 +60,40 @@ public class EnemyMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         transform.localScale = new Vector2(-(Mathf.Sign(enemyRigidBody.velocity.x)), 1f);
+        
     }
 
     public void EnemyKill()
     {
+        //TODO Add deathFX
         smokeEffect.Stop();
         Instantiate(deathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    void ResetMaterial()
+    {
+        spriteRenderer.material = matDefault;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Projectiles"))
+        {
+            //Make the enemy flash red
+            Destroy(collision.gameObject);
+            Bullet bullet = collision.GetComponent<Bullet>();
+            TakeDamage(bullet.damage);
+            spriteRenderer.material = matRedHit;
+            
+            if (health <= 0)
+            {
+                EnemyKill();
+            }
+            else
+            {
+                Invoke("ResetMaterial", 1.0f);
+            }
+        }
     }
 }

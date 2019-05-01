@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,31 +9,51 @@ public class Bullet : MonoBehaviour
     public float lifetime = 2.0f;
     public Rigidbody2D rb;
     public int damage = 40;
+    [SerializeField] public GameObject hitFX;
     //public PlayerMovement player;
 
     // Start is called before the first frame update
     void Start()
     {
-        /*if(player.isLeft == true)
-        {
-            rb.velocity = transform.right *- speed;
-        }*/
-       // else
-        //{
             rb.velocity = transform.right * speed;
-       // }
         
-        Destroy(gameObject, lifetime); //destroy object after 5s for efficiency
+        /*
+        if (Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A)))
+        {
+            rb.velocity = -transform.right * speed;
+        }*/
+
+    Destroy(gameObject, lifetime); //destroy object after 5s for efficiency
     }
 
+    private void OnColliderEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            EnemyMovement enemy = collision.gameObject.GetComponent<EnemyMovement>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                //Instantiate(hitFX, transform.position, Quaternion.identity);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+            Debug.Log("Tilemap collision");
+        }
+    }
+
+    //destroy projectile if collides with level geometry - must make boxcollider triggers
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
-        Debug.Log(collision.name); //obj hit
-        EnemyMovement enemy = collision.GetComponent<EnemyMovement>();
-        if(enemy != null)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            enemy.TakeDamage(damage);
+            Destroy(gameObject);
+            Instantiate(hitFX, transform.position, Quaternion.identity);
+            Debug.Log("Tilemap collision");
         }
     }
 }

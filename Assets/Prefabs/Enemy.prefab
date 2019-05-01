@@ -156,7 +156,8 @@ MonoBehaviour:
   moveSpeed: 1
   smokeEffect: {fileID: 4893193841340591746}
   health: 100
-  deathFX: {fileID: 0}
+  deathFX: {fileID: 8123478322066855067, guid: 4f3aa9853364df5479c9d55512e6ea7e, type: 3}
+  matRedHit: {fileID: 2100000, guid: b9da94adfb9e5c14193dcabc97a21d4f, type: 2}
 --- !u!61 &61480835553676564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194,6 +195,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SmokeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8123478322066855064, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
         type: 3}
@@ -249,36 +280,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.2924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.2924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.2924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123478322066855065, guid: 898b6c5dbf0300e4c8b6033e58a0eabf,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 898b6c5dbf0300e4c8b6033e58a0eabf, type: 3}
