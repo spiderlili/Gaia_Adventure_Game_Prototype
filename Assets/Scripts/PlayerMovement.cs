@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float startDashTime;
     [SerializeField] public Weapon weapon;
     [SerializeField] public GameObject dashVFX;
-
+    [SerializeField] public GhostDoubleImageFX ghostFX;
     private int _direction;
 
     //player state
@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D playerCollider2D;
     BoxCollider2D playerFeet;
     float gravityScaleAtStart;
+
+
 
     void Start(){
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -55,8 +57,11 @@ public class PlayerMovement : MonoBehaviour
         Shoot();
         //TODO: Hook up dash control scheme
         //Dash(); 
+
+
     }
 
+    //NOT IN USE
     private void Dash()
     {
         //if the player is not dashing
@@ -64,21 +69,25 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
+                ghostFX.makeGhost = true;
                 _direction = 1;
                 Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
+                ghostFX.makeGhost = true;
                 _direction = 2;
                 Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
+                ghostFX.makeGhost = true;
                 _direction = 3;
                 Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
+                ghostFX.makeGhost = true;
                 _direction = 4;
                 Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
@@ -123,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
         {          
-             Vector2 jumpVelocityToAdd = new Vector2(0f, _onJumpPad ? _jumpSpeed * _jumpPadMultiplier : _jumpSpeed);
+            Vector2 jumpVelocityToAdd = new Vector2(0f, _onJumpPad ? _jumpSpeed * _jumpPadMultiplier : _jumpSpeed);
             playerRigidBody.velocity += jumpVelocityToAdd;
             Debug.Log("jumpVelocityToAdd: " + jumpVelocityToAdd);
         }
@@ -150,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         float controlThrow = Input.GetAxis("Horizontal"); //value between -1 and 1
         Vector2 playerVelocity = new Vector2(controlThrow * _runSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = playerVelocity;
+        ghostFX.makeGhost = true;
 
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
         playerAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
@@ -173,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
             playerRigidBody.gravityScale = gravityScaleAtStart;
             return;
         }
+        ghostFX.makeGhost = false;
         float controlThrow = Input.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(playerRigidBody.velocity.x, controlThrow * _climbSpeed);
         playerRigidBody.velocity = climbVelocity;
