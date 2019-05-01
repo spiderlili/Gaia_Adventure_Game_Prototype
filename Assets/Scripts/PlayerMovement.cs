@@ -10,8 +10,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 _deathKick = new Vector2(10f, 10f); //tweak arount these values for dramatic death kick motion 
     [SerializeField] bool _onJumpPad = false;
     [SerializeField] float _jumpPadMultiplier = 1.5f;
-    public Weapon weapon;
-    //state
+    [SerializeField] float _dashSpeed = 7.0f; //how long the dash lasts
+    [SerializeField] float _dashTime = 3.0f;
+    [SerializeField] public float startDashTime;
+    [SerializeField] public Weapon weapon;
+    [SerializeField] public GameObject dashVFX;
+
+    private int _direction;
+
+    //player state
     bool isAlive = true;
     public bool isLeft = false;
 
@@ -28,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         playerCollider2D = GetComponent<CapsuleCollider2D>();
         playerFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerRigidBody.gravityScale;
-
+        _dashTime = startDashTime;
     }
 
     void Shoot()
@@ -46,6 +53,68 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
         Die();
         Shoot();
+        //TODO: Hook up dash control scheme
+        //Dash(); 
+    }
+
+    private void Dash()
+    {
+        //if the player is not dashing
+        if (_direction == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                _direction = 1;
+                Instantiate(dashVFX, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                _direction = 2;
+                Instantiate(dashVFX, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {
+                _direction = 3;
+                Instantiate(dashVFX, transform.position, Quaternion.identity);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                _direction = 4;
+                Instantiate(dashVFX, transform.position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            //decrease dash time or dash will never stop
+            if (_dashTime <= 0)
+            {
+                _direction = 0;
+                _dashTime = startDashTime;
+                playerRigidBody.velocity = Vector2.zero; //stop the player from continuing to dash
+            }
+            else
+            {
+                _dashTime -= Time.deltaTime;
+                playerAnimator.SetTrigger("Shake"); //screen shake when dashing
+                if (_direction == 1)
+                {
+                    playerRigidBody.velocity = Vector2.left * _dashSpeed;
+                }
+                if (_direction == 2)
+                {
+                    playerRigidBody.velocity = Vector2.right * _dashSpeed;
+                }
+                /*
+                if (_direction == 3)
+                {
+                    playerRigidBody.velocity = Vector2.up * _dashSpeed;
+                }
+                if (_direction == 4)
+                {
+                    playerRigidBody.velocity = Vector2.down * _dashSpeed;
+                }*/
+            }
+        }
     }
 
     private void Jump(){

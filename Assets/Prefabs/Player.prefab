@@ -139,7 +139,12 @@ MonoBehaviour:
   _deathKick: {x: 10, y: 10}
   _onJumpPad: 0
   _jumpPadMultiplier: 1.5
+  _dashSpeed: 7
+  _dashTime: 3
+  startDashTime: 0
   weapon: {fileID: 0}
+  dashVFX: {fileID: 7510811449614498675, guid: 5216dfc8ff2ac0b49b9f72ec9baf4e94, type: 3}
+  isLeft: 0
 --- !u!61 &61988862894450420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,7 +190,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2376514916159539753
 MonoBehaviour:
