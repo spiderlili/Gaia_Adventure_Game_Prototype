@@ -10,20 +10,11 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public int damage = 40;
     [SerializeField] public GameObject hitFX;
-    //public PlayerMovement player;
 
     // Start is called before the first frame update
     void Start()
     {
-            rb.velocity = transform.right * speed;
-        
-        /*
-        if (Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A)))
-        {
-            rb.velocity = -transform.right * speed;
-        }*/
-
-    Destroy(gameObject, lifetime); //destroy object after 5s for efficiency
+        Destroy(gameObject, lifetime); //destroy object after 5s for efficiency
     }
 
     private void OnColliderEnter2D(Collider2D collision)

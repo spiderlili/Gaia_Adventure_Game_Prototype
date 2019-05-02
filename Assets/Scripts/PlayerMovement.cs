@@ -42,7 +42,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Shoot()
     {
-        weapon.Shoot();
+        if (isLeft == true)
+        {
+            weapon.ShootLeft();
+        }
+
+        else if (isLeft == false)
+        {
+            weapon.ShootRight();
+        }
     }
 
     void Update(){ 
@@ -56,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
         Die();
         Shoot();
         //TODO: Hook up dash control scheme
-        //Dash(); 
+        //Dash();
 
-
+        Debug.Log(isLeft);
     }
 
     //NOT IN USE
@@ -71,41 +79,41 @@ public class PlayerMovement : MonoBehaviour
             {
                 ghostFX.makeGhost = true;
                 _direction = 1;
-                Instantiate(dashVFX, transform.position, Quaternion.identity);
+                //Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 ghostFX.makeGhost = true;
                 _direction = 2;
-                Instantiate(dashVFX, transform.position, Quaternion.identity);
+                //Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 ghostFX.makeGhost = true;
                 _direction = 3;
-                Instantiate(dashVFX, transform.position, Quaternion.identity);
+                //Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 ghostFX.makeGhost = true;
                 _direction = 4;
-                Instantiate(dashVFX, transform.position, Quaternion.identity);
+                //Instantiate(dashVFX, transform.position, Quaternion.identity);
             }
         }
-        else
-        {
-            //decrease dash time or dash will never stop
-            if (_dashTime <= 0)
-            {
-                _direction = 0;
-                _dashTime = startDashTime;
-                playerRigidBody.velocity = Vector2.zero; //stop the player from continuing to dash
-            }
-            else
-            {
-                _dashTime -= Time.deltaTime;
-                playerAnimator.SetTrigger("Shake"); //screen shake when dashing
-                if (_direction == 1)
+        /* else
+         {
+             //decrease dash time or dash will never stop
+             if (_dashTime <= 0)
+             {
+                 _direction = 0;
+                 _dashTime = startDashTime;
+                 playerRigidBody.velocity = Vector2.zero; //stop the player from continuing to dash
+             }
+             else
+             {
+                 _dashTime -= Time.deltaTime;
+                 //playerAnimator.SetTrigger("Shake"); //screen shake when dashing
+                 /*if (_direction == 1)
                 {
                     playerRigidBody.velocity = Vector2.left * _dashSpeed;
                 }
@@ -121,9 +129,9 @@ public class PlayerMovement : MonoBehaviour
                 if (_direction == 4)
                 {
                     playerRigidBody.velocity = Vector2.down * _dashSpeed;
-                }*/
-            }
-        }
+                }
+    }
+    }*/
     }
 
     private void Jump(){
@@ -196,11 +204,20 @@ public class PlayerMovement : MonoBehaviour
     private void FlipSprite(){
         //if the player is moving horizontally reverse the current scaling of x axis
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
+        
         if (playerHasHorizontalSpeed)
         {
             //reverse the furrent scaling of x asis
             transform.localScale = new Vector2(Mathf.Sign(playerRigidBody.velocity.x), 1f);
-            isLeft = true;
+            if(Mathf.Sign(playerRigidBody.velocity.x) >= 0)
+            {
+                isLeft = false;
+            }
+            else
+            {
+                isLeft = true;
+            }
+            
         }
     }
 }
