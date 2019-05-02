@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Weapon weapon;
     [SerializeField] public GameObject dashVFX;
     [SerializeField] public GhostDoubleImageFX ghostFX;
+    [SerializeField] public DialogueTrigger dialogueTrigger;
     private int _direction;
 
     //player state
@@ -29,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D playerFeet;
     float gravityScaleAtStart;
 
-
-
     void Start(){
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
@@ -38,18 +37,23 @@ public class PlayerMovement : MonoBehaviour
         playerFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerRigidBody.gravityScale;
         _dashTime = startDashTime;
-    }
+        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
 
+    }
+    
     void Shoot()
     {
-        if (isLeft == true)
+        if (dialogueTrigger.inDialogue == false)
         {
-            weapon.ShootLeft();
-        }
+            if (isLeft == true)
+            {
+                weapon.ShootLeft();
+            }
 
-        else if (isLeft == false)
-        {
-            weapon.ShootRight();
+            else if (isLeft == false)
+            {
+                weapon.ShootRight();
+            }
         }
     }
 
@@ -58,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
             return; //turn off the player's ability to control the character if they died
         }
         Run();
+        //TODO: Prevent the user from shooting when climbing and talking
         Climb();
         Jump();
         FlipSprite();
@@ -164,13 +169,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
     private void Run(){
-        float controlThrow = Input.GetAxis("Horizontal"); //value between -1 and 1
-        Vector2 playerVelocity = new Vector2(controlThrow * _runSpeed, playerRigidBody.velocity.y);
-        playerRigidBody.velocity = playerVelocity;
-        ghostFX.makeGhost = true;
+            float controlThrow = Input.GetAxis("Horizontal"); //value between -1 and 1
+            Vector2 playerVelocity = new Vector2(controlThrow * _runSpeed, playerRigidBody.velocity.y);
+            playerRigidBody.velocity = playerVelocity;
+            ghostFX.makeGhost = true;
 
-        bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
-        playerAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+            bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
+            playerAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+
     }
 
     private void Die(){
