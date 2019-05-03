@@ -847,7 +847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621659750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4134133, y: 3.3552382, z: -10.023784}
+  m_LocalPosition: {x: -1.4134083, y: 3.3544695, z: -10.023784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 299890992}
@@ -5559,6 +5559,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5239704401660529269, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 621659753}
+    - target: {fileID: 4577770010833535617, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577770010833535617, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c107da02f25679a45ac792fced10f42f, type: 3}
 --- !u!1 &1610735588
@@ -5839,7 +5854,7 @@ MonoBehaviour:
     name: Kirine
     sentences:
     - It's raining again...
-    - I hate the rain because it reminds me of that day.
+    - I better go and find some shelter.
   inDialogue: 0
   dialogueManager: {fileID: 0}
 --- !u!61 &1895747667
