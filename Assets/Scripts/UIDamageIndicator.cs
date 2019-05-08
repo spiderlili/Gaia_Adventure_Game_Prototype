@@ -22,6 +22,6 @@ public class UIDamageIndicator : MonoBehaviour
 
     public void DestroySelf()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

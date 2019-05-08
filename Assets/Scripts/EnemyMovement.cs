@@ -18,6 +18,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]public int health = 100;
     [SerializeField]public GameObject deathFX;
     [SerializeField]private Material matRedHit;
+    public GameObject damageIndicator;
+    private Animator damageIndicatorAnimator;
     private Material matDefault;
     SpriteRenderer spriteRenderer;
 
@@ -26,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damageIndicatorAnimator = damageIndicator.GetComponent<Animator>();
         matDefault = spriteRenderer.material;
     }
 
@@ -46,7 +49,7 @@ public class EnemyMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if(health <= 0)
+        if (health <= 0)
         {
             EnemyKill();
         }
@@ -84,6 +87,9 @@ public class EnemyMovement : MonoBehaviour
             Destroy(collision.gameObject);
             Bullet bullet = collision.GetComponent<Bullet>();
             TakeDamage(bullet.damage);
+            damageIndicatorAnimator.SetBool("IsDamaged", true);
+            GameObject goDamageIndicator = Instantiate(damageIndicator, collision.gameObject.transform.position, new Quaternion());
+            goDamageIndicator.GetComponent<UIDamageIndicator>().label.text = bullet.damage.ToString("F0");     
             spriteRenderer.material = matRedHit;
             
             if (health <= 0)
