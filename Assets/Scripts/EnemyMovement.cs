@@ -87,8 +87,12 @@ public class EnemyMovement : MonoBehaviour
             Destroy(collision.gameObject);
             Bullet bullet = collision.GetComponent<Bullet>();
             TakeDamage(bullet.damage);
+
+            //TODO: Instantiate damage number only and destroy damage number, leave slider there
             damageIndicatorAnimator.SetBool("IsDamaged", true);
             GameObject goDamageIndicator = Instantiate(damageIndicator, collision.gameObject.transform.position, new Quaternion());
+
+            //Fixed point Numeric Format String
             goDamageIndicator.GetComponent<UIDamageIndicator>().label.text = bullet.damage.ToString("F0");     
             spriteRenderer.material = matRedHit;
             
