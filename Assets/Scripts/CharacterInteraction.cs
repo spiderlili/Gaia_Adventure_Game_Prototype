@@ -32,7 +32,7 @@ public class CharacterInteraction : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, talkRange);
     }
 
