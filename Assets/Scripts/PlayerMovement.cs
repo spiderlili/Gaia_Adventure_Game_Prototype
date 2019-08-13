@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     //player state
     bool isAlive = true;
     public bool isLeft = false;
+    public bool isInConversation = false;
 
     //cached component references
     Rigidbody2D playerRigidBody;
@@ -30,20 +31,19 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D playerFeet;
     float gravityScaleAtStart;
 
-    void Start(){
+    void Start()
+    {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerCollider2D = GetComponent<CapsuleCollider2D>();
         playerFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerRigidBody.gravityScale;
         _dashTime = startDashTime;
-        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
-
     }
     
     void Shoot()
     {
-        if (dialogueTrigger.inDialogue == false)
+        if (isInConversation == false)
         {
             if (isLeft == true)
             {
@@ -58,20 +58,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update(){ 
-        if (!isAlive){
+        if (!isAlive || isInConversation)
+        {
             return; //turn off the player's ability to control the character if they died
         }
-        Run();
-        //TODO: Prevent the user from shooting when climbing and talking
-        Climb();
-        Jump();
-        FlipSprite();
-        Die();
-        Shoot();
+            Run();
+            //TODO: Prevent the user from shooting when climbing and talking
+            Climb();
+            Jump();
+            FlipSprite();
+            Die();
+            Shoot();
         //TODO: Hook up dash control scheme
         //Dash();
-
-        Debug.Log(isLeft);
     }
 
     //NOT IN USE
@@ -139,7 +138,8 @@ public class PlayerMovement : MonoBehaviour
     }*/
     }
 
-    private void Jump(){
+    private void Jump()
+    {
         if (!playerFeet.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
             return; //prevent the player from being able to jump if they hit the wall
         }
@@ -168,7 +168,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    private void Run(){
+    private void Run()
+    {
             float controlThrow = Input.GetAxis("Horizontal"); //value between -1 and 1
             Vector2 playerVelocity = new Vector2(controlThrow * _runSpeed, playerRigidBody.velocity.y);
             playerRigidBody.velocity = playerVelocity;
@@ -179,7 +180,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Die(){
+    private void Die()
+    {
         if (playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazards")))
         {
             //camera go black
@@ -190,7 +192,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Climb(){
+    private void Climb()
+    {
         if (!playerFeet.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             playerAnimator.SetBool("isClimbing", false); //stop the climb animation if exits the state
@@ -207,7 +210,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("isClimbing", playerHasVerticalSpeed);
     }
 
-    private void FlipSprite(){
+    private void FlipSprite()
+    {
         //if the player is moving horizontally reverse the current scaling of x axis
         bool playerHasHorizontalSpeed = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
         
@@ -225,5 +229,15 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+    }
+
+    public void DisableMovement()
+    {
+        isInConversation = true;
+    }
+
+    public void EnableMovement()
+    {
+        isInConversation = false;
     }
 }
