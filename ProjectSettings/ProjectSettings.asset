@@ -600,7 +600,7 @@ PlayerSettings:
   facebookStatus: 1
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 6
   cloudProjectId: 5b246b83-5d0b-4a07-b4ea-d0352313d1e7
   framebufferDepthMemorylessMode: 0
   projectName: Platform2DAdventure
