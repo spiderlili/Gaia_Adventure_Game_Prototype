@@ -2,20 +2,140 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Hello??! ",
+		"body": "//start\n//find cure\n//cure found\n//sell it to merchant\n//give it to cat\n\n<<set $game_state to \"start\">>\n???: Help! Help! I can't move!!\nPlayer: What's going on?\n\n",
 		"position": {
-			"x": 544,
-			"y": 267
+			"x": 1086,
+			"y": 74
+		},
+		"colorID": 2
+	},
+	{
+		"title": "RumourShiba",
+		"tags": "",
+		"body": "The Shibas are proud of their reputation for being strong and independent. ",
+		"position": {
+			"x": 858,
+			"y": 84
 		},
 		"colorID": 0
 	},
 	{
-		"title": "SmokeMonster",
+		"title": "Spring",
 		"tags": "",
-		"body": "*Cough Cough* So much smoke!",
+		"body": "<<if $spring_talk==0>>\nPlayer: What a lovely hotspring.\n\n<<elseif $spring_talk==1>>\nPlayer: I wonder how long it's been there?\n\n<<else>>\nPlayer: It looks like a bottomless hole.\n\n<<endif>>\n\n<<set $spring_talk += 1>>",
 		"position": {
-			"x": 807,
-			"y": 217
+			"x": 1346,
+			"y": 71
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop",
+		"tags": "",
+		"body": "<<if $game_state == \"start\">>\n[[Shop.Start]]\n<<$game_state == \"find cure\">>\n[[Shop.FindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Shop.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Shop.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to merchant\">>\n[[Shop.GaveSpellToMerchant]]\n<<endif>>",
+		"position": {
+			"x": 45,
+			"y": 585
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Cat",
+		"tags": "",
+		"body": "<<if $game_state == \"start\" or $game_state == \"find cure\">>\n[[Cat.StartOrFindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Cat.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Cat.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to merchant\">>\n[[Cat.GaveSpellToMerchant]]\n<<endif>>",
+		"position": {
+			"x": 40,
+			"y": 65
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop.Start",
+		"tags": "",
+		"body": "<<if $shop_talk == 0>>\n\n//if not spoken to shop yet then don't know who the merchant is\n<<if $cat_talk == 0>>\nMerchant: Welcome to my shop! What can I do for you? Need some items? Or maybe you want to sell something? I will give you a good price!\n",
+		"position": {
+			"x": -368,
+			"y": 703
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Cat.StartOrFindCure",
+		"tags": "",
+		"body": "<<if visited(\"Cat.StartOrFindCure\")==false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk==0>>\nPlayer: What's this weird statue?\nCat: Could you please help me?\nPlayer: Ahhh! This statue can talk?\n\n<<if $game_state==\"find cure\">>\nPlayer: How can I help you?\n<<endif>>\n\nCat: I accidentally turned myself into a statue! \nCat: I need some holy water to turn myself back, Can you help?\n\n-> I..guess?\nCat: Thank you so much! I can't offer you any money unfortunately, but I owe you a favour!\n\n-> How did you turn yourself into a statue?? <<if $game_state!=\"find cure\">>\nCat: I don't know! I've never done anything like this before.\nCat: I turned flowers into cats, but everyone loved that!\n\n-> I'm looking for some holy water myself! <<if $game_state==\"find cure\">>\nCat: Oh, that's great! You are so kind!\n\n<<elseif $cat_talk==1>>\nCat: I'm not sure where to find it! Maybe near the temple?\n\n<<else>>\nCat: Please help me!\n\n<<endif>>\n<<set $cat_talk+=1>>",
+		"position": {
+			"x": -317,
+			"y": 301
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Cat.CureFound",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": -50,
+			"y": 335
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Cat.GaveSpellToCat",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 174,
+			"y": 329
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Cat.GaveSpellToMerchant",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 366,
+			"y": 111
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop.FindCure",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": -102,
+			"y": 856
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop.CureFound",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 131,
+			"y": 914
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop.GaveSpellToCat",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 392,
+			"y": 842
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Shop.GaveSpellToMerchant",
+		"tags": "",
+		"body": "Empty Text",
+		"position": {
+			"x": 460,
+			"y": 594
 		},
 		"colorID": 0
 	}

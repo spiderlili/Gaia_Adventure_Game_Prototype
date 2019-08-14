@@ -16,7 +16,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     public void TriggerDialogue()
     {
-        dialogueManager.StartDialogue(dialogue);
+        //dialogueManager.StartDialogue(dialogue);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

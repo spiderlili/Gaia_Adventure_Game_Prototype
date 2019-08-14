@@ -4,31 +4,73 @@ using UnityEngine;
 
 public class CharacterInteraction : MonoBehaviour
 {
-    public float talkRange;
+    public float talkRange = 1;
+    public float rangeMagicNumber = 50;
     private List<TalkInteraction> talkInteractions;
-    //look for all nearby interactive objs - which is closest
-    // Update is called once per frame
+
+    /*
     void Update()
+     {
+         if (Input.GetButtonDown("Talk"))
+         {
+             var allInteractions = FindObjectsOfType<TalkInteraction>();
+             Vector3 currentCharcterPosition = transform.position;
+             foreach (var interaction in allInteractions)
+             {               
+                 //var distance = (interaction.transform.position - this.transform.position).sqrMagnitude;
+                 Vector3 distanceToTalkable = interaction.transform.position - currentCharcterPosition;
+                 float distanceToTarget = distanceToTalkable.magnitude;
+                 Debug.Log("distance " + distanceToTarget);
+                 if (distanceToTarget < talkRange)
+                 {
+                     interaction.Talk();
+                     Debug.Log("talk");
+                     break; //don't hold > once
+                 }
+             }
+         }
+     }*/
+
+    Transform GetClosestTalkable(Transform[] talkables)
+    {
+        Transform bestTalkableTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+        foreach (Transform potentialTarget in talkables)
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTalkableTarget = potentialTarget;
+            }
+        }
+        return bestTalkableTarget;
+    }
+
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (Input.GetButtonDown("Talk"))
         {
             var allInteractions = FindObjectsOfType<TalkInteraction>();
+            Vector3 currentCharcterPosition = transform.position;
             foreach (var interaction in allInteractions)
             {
-                var distance = (interaction.transform.position - this.transform.position).magnitude;
-                if(distance <= talkRange)
+                //var distance = (interaction.transform.position - this.transform.position).sqrMagnitude;
+                Vector3 distanceToTalkable = interaction.transform.position - currentCharcterPosition;
+                float distanceToTarget = distanceToTalkable.magnitude;
+                Debug.Log("distance " + distanceToTarget);
+                if (distanceToTarget < talkRange)
                 {
                     interaction.Talk();
+                    Debug.Log("talk");
                     break; //don't hold > once
                 }
             }
         }
-    }
-
-    public IEnumerator<TalkInteraction> GetEnumerator()
-    {
-        return talkInteractions.GetEnumerator();    
-    }
+    }*/
 
     private void OnDrawGizmosSelected()
     {
