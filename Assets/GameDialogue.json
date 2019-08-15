@@ -4,8 +4,8 @@
 		"tags": "",
 		"body": "//start\n//find cure\n//cure found\n//sell it to merchant\n//give it to cat\n\n<<set $game_state to \"start\">>\n???: Help! Help! I can't move!!\nPlayer: What's going on?\n\n",
 		"position": {
-			"x": 1086,
-			"y": 74
+			"x": 1011,
+			"y": 96
 		},
 		"colorID": 2
 	},
@@ -14,8 +14,8 @@
 		"tags": "",
 		"body": "The Shibas are proud of their reputation for being strong and independent. ",
 		"position": {
-			"x": 858,
-			"y": 84
+			"x": 764,
+			"y": 96
 		},
 		"colorID": 0
 	},
@@ -24,15 +24,15 @@
 		"tags": "",
 		"body": "<<if $spring_talk==0>>\nPlayer: What a lovely hotspring.\n\n<<elseif $spring_talk==1>>\nPlayer: I wonder how long it's been there?\n\n<<else>>\nPlayer: It looks like a bottomless hole.\n\n<<endif>>\n\n<<set $spring_talk += 1>>",
 		"position": {
-			"x": 1346,
-			"y": 71
+			"x": 1022,
+			"y": 404
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Shop",
 		"tags": "",
-		"body": "<<if $game_state == \"start\">>\n[[Shop.Start]]\n<<$game_state == \"find cure\">>\n[[Shop.FindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Shop.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Shop.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to merchant\">>\n[[Shop.GaveSpellToMerchant]]\n<<endif>>",
+		"body": "<<if $game_state == \"start\">>\n[[Shop.Start]]\n<<$game_state == \"find cure\">>\n[[Shop.FindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Shop.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Shop.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to shop\">>\n[[Shop.GaveSpellToMerchant]]\n<<endif>>",
 		"position": {
 			"x": 45,
 			"y": 585
@@ -62,7 +62,7 @@
 	{
 		"title": "Cat.StartOrFindCure",
 		"tags": "",
-		"body": "<<if visited(\"Cat.StartOrFindCure\")==false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk==0>>\nPlayer: What's this weird statue?\nCat: Could you please help me?\nPlayer: Ahhh! This statue can talk?\n\n<<if $game_state==\"find cure\">>\nPlayer: How can I help you?\n<<endif>>\n\nCat: I accidentally turned myself into a statue! \nCat: I need some holy water to turn myself back, Can you help?\n\n-> I..guess?\nCat: Thank you so much! I can't offer you any money unfortunately, but I owe you a favour!\n\n-> How did you turn yourself into a statue?? <<if $game_state!=\"find cure\">>\nCat: I don't know! I've never done anything like this before.\nCat: I turned flowers into cats, but everyone loved that!\n\n-> I'm looking for some holy water myself! <<if $game_state==\"find cure\">>\nCat: Oh, that's great! You are so kind!\n\n<<elseif $cat_talk==1>>\nCat: I'm not sure where to find it! Maybe near the temple?\n\n<<else>>\nCat: Please help me!\n\n<<endif>>\n<<set $cat_talk+=1>>",
+		"body": "<<if visited(\"Cat.StartOrFindCure\")==false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk==0>>\nPlayer: What's this weird statue?\nCat: Hey! Could you please help me?\nPlayer: Woah! This statue can talk?\nCat: Well, that was amistake.\nCat: Tried to turn this rat I caught into a stone, but it backfired!\n-> Why did you want to turn this rat into stone?\n    Cat: Because he's a thief! \n-> Oh no! That's awful!\n    Cat: It's not great! I can't eat anything now.\nPlayer: Is there something I can do?\nCat: Well, I always have a backup plan.\nCat: I stashed a spell reversal scroll somewhere around here.\n-> That's useful.\n    Cat: Always is! But I don't remember where!\n->Where?\n    Cat: I can't remember! \n<<endif>>\n<<set $game_state to \"find cure\">>\n\n<<if $game_state==\"find cure\">>\nPlayer: How can I help you?\n<<endif>>\n\nCat: I accidentally turned myself into a statue! \nCat: I need some holy water to turn myself back, Can you help?\n\n-> I..guess?\nCat: Thank you so much! I can't offer you any money unfortunately, but I owe you a favour!\n\n-> How did you turn yourself into a statue?? \n<<if $game_state!=\"find cure\">>\nCat: I don't know! I've never done anything like this before.\nCat: I turned flowers into cats, but everyone loved that!\n\n-> I'm looking for some holy water myself! \n<<if $game_state==\"find cure\">>\nCat: Oh, that's great! You are so kind!\n\n<<elseif $cat_talk==1>>\nCat: I'm not sure where to find it! Maybe near the temple?\n\n<<elseif $cat_talk==2>>\nCat: Did you find the cure yet? I don't want to be a statue forever! \n\n<<else>>\nCat: Please help me find the cure!\n\n<<endif>>\n<<set $cat_talk+=1>>",
 		"position": {
 			"x": -317,
 			"y": 301
@@ -72,19 +72,19 @@
 	{
 		"title": "Cat.CureFound",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Cat.CureFound\") is false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk == 0>>\nCat: Oh! YOu found the cure! How wonderful! \n<<endif>>\n\nCat: Can you put it in my hand so I can cast it?\n-> Sure!\n    Cat: Great!\n<<set $game_state = \"gave cure to cat\">>\n\n-> Um, not yet. Maybe later.\n    Cat: Oh? Please give it to me when you're ready! Don't take too long, then. \n<<set $cat_talk += 1>>",
 		"position": {
-			"x": -50,
-			"y": 335
+			"x": -62,
+			"y": 344
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Cat.GaveSpellToCat",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Cat.GaveSpellToCat\") is false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk == 0>>\nCat: Thank you! \n<<elseif $cat_talk == 0>>\nCat: I can't thank you enough!\n<<else>>\nCat: Thanks again!\n<<endif>>\n<<set $cat_talk += 1>>",
 		"position": {
-			"x": 174,
+			"x": 177,
 			"y": 329
 		},
 		"colorID": 0
@@ -92,7 +92,7 @@
 	{
 		"title": "Cat.GaveSpellToMerchant",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Cat.GaveSpellToMerchant\") is false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk == 0>>\nCat: You've sold it?\n<<elseif $cat_talk == 0>>\nCat: Do you have any idea what that means for me?\n<<else>>\nCat: I'm going to stay like this forever!\n<<endif>>\n<<set $cat_talk += 1>>",
 		"position": {
 			"x": 366,
 			"y": 111
@@ -102,7 +102,7 @@
 	{
 		"title": "Shop.FindCure",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Shop.FindCure\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Did you find the thing yet?\n",
 		"position": {
 			"x": -102,
 			"y": 856
@@ -112,9 +112,9 @@
 	{
 		"title": "Shop.CureFound",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Shop.CureFound\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Oh! Look at this! What a wonderful find! \nMerchant: I will pay handsome money for it!\n<<else>>\nMerchant: Can you sell it to me?\n<<endif>>\n\n-> Sure!\n    Merchant: Excellent!\n<<set $game_state = \"gave cure to shop\">>\n\n-> Maybe later.\n    Merchant: Oh? Please sell it to me when you're ready!\n<<set $Shop_talk += 1>>",
 		"position": {
-			"x": 131,
+			"x": 133,
 			"y": 914
 		},
 		"colorID": 0
@@ -122,20 +122,30 @@
 	{
 		"title": "Shop.GaveSpellToCat",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Shop.GaveSpellToCat\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: You've made a big mistake.\nMerchant: I would have made you rich!\n<<elseif $shop_talk == 1>>\nMerchant: You're going to make so much profit!\n<<else>>\nMerchant: *angry muttering*\n<<endif>>\n\n<<set $Shop_talk += 1>>",
 		"position": {
-			"x": 392,
-			"y": 842
+			"x": 394,
+			"y": 844
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Shop.GaveSpellToMerchant",
 		"tags": "",
-		"body": "Empty Text",
+		"body": "<<if visited(\"Shop.GaveSpellToMerchant\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: I'm so happy!\nMerchant: Here, have lots of money!\n<<elseif $shop_talk == 1>>\nMerchant: I'm going to make so much profit!\n<<else>>\nMerchant: Thanks!\n<<endif>>\n\n<<set $Shop_talk += 1>>",
 		"position": {
 			"x": 460,
 			"y": 594
+		},
+		"colorID": 0
+	},
+	{
+		"title": "CureLocation",
+		"tags": "",
+		"body": "<<if $game_state == \"start\">>\nPlayer: This looks weird.\n<<elseif $game_state == \"find cure\">>\nPlayer: Looks like something is hidden there.\n<<set $game_state = \"cure found\">>\n<<else>>\nPlayer: There's nothing here.\n<<endif>>",
+		"position": {
+			"x": 779,
+			"y": 412
 		},
 		"colorID": 0
 	}

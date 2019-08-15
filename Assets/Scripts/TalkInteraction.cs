@@ -6,7 +6,7 @@ using Yarn.Unity;
 public class TalkInteraction : MonoBehaviour
 {
     public string NodeName;
-    public DialogueRunner dialogueRunner;
+    [SerializeField]private DialogueRunner dialogueRunner;
 
     public void Talk()
     {
@@ -19,8 +19,7 @@ public class TalkInteraction : MonoBehaviour
             else if (dialogueRunner == null)
             {
                 FindObjectOfType<Yarn.Unity.DialogueRunner>().StartDialogue(NodeName);
-            }
-            
+            }           
       //      Debug.Log("TALK");
         }
     }
@@ -39,7 +38,6 @@ public class TalkInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             Talk();
-
         }
     }
 
