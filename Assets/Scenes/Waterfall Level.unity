@@ -6371,13 +6371,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
-      propertyPath: m_havePropertiesChanged
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_fontSize
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
-      propertyPath: m_isInputParsingRequired
+      propertyPath: m_textInfo.characterCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_fontSizeMax
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_fontSizeMin
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 13.703243
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436121191989449823, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 13.769415
       objectReference: {fileID: 0}
     - target: {fileID: 7582607668420579319, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
@@ -6389,20 +6424,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2861484882584716603, guid: c107da02f25679a45ac792fced10f42f,
+    - target: {fileID: 7991752581484277493, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2861484882584716603, guid: c107da02f25679a45ac792fced10f42f,
+    - target: {fileID: 4554231038325144237, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2861484882584716603, guid: c107da02f25679a45ac792fced10f42f,
+    - target: {fileID: 6385863421515308203, guid: c107da02f25679a45ac792fced10f42f,
         type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 621659753}
+    - target: {fileID: 7991752581484277496, guid: c107da02f25679a45ac792fced10f42f,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c107da02f25679a45ac792fced10f42f, type: 3}
@@ -7484,24 +7524,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76e24a66d0703b8439f3c14114acc99d, type: 3}
---- !u!1 &7991752581484277493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7991752581484277493, guid: c107da02f25679a45ac792fced10f42f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1502093626}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &7991752581484277496
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7991752581484277493}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &8123478320501545595
 PrefabInstance:
   m_ObjectHideFlags: 0

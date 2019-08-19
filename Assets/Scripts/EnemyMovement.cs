@@ -5,23 +5,24 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField]private float moveSpeed = 1f;
     //state
-    bool isAlive = true;
+    private bool isAlive = true;
 
     //cached component references
-    Rigidbody2D enemyRigidBody;
-    Animator enemyAnimator;
-    Collider2D enemyCollider2D;
-    float gravityScaleAtStart;
-    [SerializeField]public ParticleSystem smokeEffect;
-    [SerializeField]public int health = 100;
-    [SerializeField]public GameObject deathFX;
+    private Rigidbody2D enemyRigidBody;
+    private Animator enemyAnimator;
+    private Collider2D enemyCollider2D;
+    private float gravityScaleAtStart;
+    [SerializeField]private ParticleSystem smokeEffect;
+    [SerializeField]private int health = 100;
+    [SerializeField]private GameObject deathFX;
     [SerializeField]private Material matRedHit;
-    public GameObject damageIndicator;
+    [SerializeField]private GameObject damageIndicator;
     private Animator damageIndicatorAnimator;
     private Material matDefault;
     SpriteRenderer spriteRenderer;
+    private int updateInterval = 3;
 
     // Use this for initialization
     void Start()
@@ -35,13 +36,16 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsFacingRight())
+        if(Time.frameCount % updateInterval == 0) //only runs on every 3rd frame
         {
-            enemyRigidBody.velocity = new Vector2(moveSpeed, 0f);
-        }
-        else
-        {
-            enemyRigidBody.velocity = new Vector2(-moveSpeed, 0f); //move in the negative direction
+            if (IsFacingRight())
+            {
+                enemyRigidBody.velocity = new Vector2(moveSpeed, 0f);
+            }
+            else
+            {
+                enemyRigidBody.velocity = new Vector2(-moveSpeed, 0f); //move in the negative direction
+            }
         }
 
     }
@@ -88,14 +92,21 @@ public class EnemyMovement : MonoBehaviour
             Bullet bullet = collision.GetComponent<Bullet>();
             TakeDamage(bullet.damage);
 
-            //TODO: Instantiate damage number only and destroy damage number, leave slider there           
-            GameObject goDamageIndicator = Instantiate(damageIndicator, collision.gameObject.transform.position, new Quaternion());
+            //TODO: Instantiate damage number only and destroy damage number, leave slider there   
             damageIndicatorAnimator.SetBool("IsDamaged", true);
+
+            if (damageIndicatorAnimator.GetBool("IsDamaged"))
+            {
+                spriteRenderer.material = matRedHit;
+            }
+            else
+            {
+                GameObject goDamageIndicator = Instantiate(damageIndicator, collision.gameObject.transform.position, new Quaternion());
+                goDamageIndicator.GetComponent<UIDamageIndicator>().label.text = bullet.damage.ToString("F0");
+            }
             
             //Fixed point Numeric Format String
-            goDamageIndicator.GetComponent<UIDamageIndicator>().label.text = bullet.damage.ToString("F0");     
-            spriteRenderer.material = matRedHit;
-            
+                      
             if (health <= 0)
             {
                 EnemyKill();
