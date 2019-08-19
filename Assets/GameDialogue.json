@@ -32,7 +32,7 @@
 	{
 		"title": "Shop",
 		"tags": "",
-		"body": "<<if $game_state == \"start\">>\n[[Shop.Start]]\n<<$game_state == \"find cure\">>\n[[Shop.FindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Shop.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Shop.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to shop\">>\n[[Shop.GaveSpellToMerchant]]\n<<endif>>",
+		"body": "<<if $game_state == \"start\">>\n[[Shop.Start]]\n<<$game_state == \"find cure\">>\n[[Shop.FindCure]]\n<<elseif $game_state == \"cure found\">>\n[[Shop.CureFound]]\n<<elseif $game_state == \"gave cure to cat\">>\n[[Shop.GaveSpellToCat]]\n<<elseif $game_state == \"gave cure to merchant\">>\n[[Shop.GaveSpellToMerchant]]\n<<endif>>",
 		"position": {
 			"x": 45,
 			"y": 585
@@ -52,7 +52,7 @@
 	{
 		"title": "Shop.Start",
 		"tags": "",
-		"body": "<<if $shop_talk == 0>>\n\n//if not spoken to shop yet then don't know who the merchant is\n<<if $cat_talk == 0>>\nMerchant: Welcome to my shop! What can I do for you? Need some items? Or maybe you want to sell something? I will give you a good price!\n",
+		"body": "<<if $shop_talk == 0>>\nMerchant: Welcome to my shop! What can I do for you? Need some items? Or maybe you want to sell something? I will give you a good price!\n<<endif>>\n//if not spoken to shop yet then don't know who the merchant is\n<<if $cat_talk == 0>>\nMerchant: Welcome to my shop! What can I do for you? Need some items? Or maybe you want to sell something? I will give you a good price!\n<<endif>>",
 		"position": {
 			"x": -368,
 			"y": 703
@@ -62,7 +62,7 @@
 	{
 		"title": "Cat.StartOrFindCure",
 		"tags": "",
-		"body": "<<if visited(\"Cat.StartOrFindCure\")==false>>\n<<set $cat_talk to 0>>\n<<endif>>\n\n<<if $cat_talk==0>>\nPlayer: What's this weird statue?\nCat: Hey! Could you please help me?\nPlayer: Woah! This statue can talk?\nCat: Well, that was amistake.\nCat: Tried to turn this rat I caught into a stone, but it backfired!\n-> Why did you want to turn this rat into stone?\n    Cat: Because he's a thief! \n-> Oh no! That's awful!\n    Cat: It's not great! I can't eat anything now.\nPlayer: Is there something I can do?\nCat: Well, I always have a backup plan.\nCat: I stashed a spell reversal scroll somewhere around here.\n-> That's useful.\n    Cat: Always is! But I don't remember where!\n->Where?\n    Cat: I can't remember! \n<<endif>>\n<<set $game_state to \"find cure\">>\n\n<<if $game_state==\"find cure\">>\nPlayer: How can I help you?\n<<endif>>\n\nCat: I accidentally turned myself into a statue! \nCat: I need some holy water to turn myself back, Can you help?\n\n-> I..guess?\nCat: Thank you so much! I can't offer you any money unfortunately, but I owe you a favour!\n\n-> How did you turn yourself into a statue?? \n<<if $game_state!=\"find cure\">>\nCat: I don't know! I've never done anything like this before.\nCat: I turned flowers into cats, but everyone loved that!\n\n-> I'm looking for some holy water myself! \n<<if $game_state==\"find cure\">>\nCat: Oh, that's great! You are so kind!\n\n<<elseif $cat_talk==1>>\nCat: I'm not sure where to find it! Maybe near the temple?\n\n<<elseif $cat_talk==2>>\nCat: Did you find the cure yet? I don't want to be a statue forever! \n\n<<else>>\nCat: Please help me find the cure!\n\n<<endif>>\n<<set $cat_talk+=1>>",
+		"body": "howdy!",
 		"position": {
 			"x": -317,
 			"y": 301
@@ -102,7 +102,7 @@
 	{
 		"title": "Shop.FindCure",
 		"tags": "",
-		"body": "<<if visited(\"Shop.FindCure\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Did you find the thing yet?\n",
+		"body": "<<if visited(\"Shop.FindCure\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Did you find the thing yet?\n<<endif>>",
 		"position": {
 			"x": -102,
 			"y": 856
@@ -112,7 +112,7 @@
 	{
 		"title": "Shop.CureFound",
 		"tags": "",
-		"body": "<<if visited(\"Shop.CureFound\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Oh! Look at this! What a wonderful find! \nMerchant: I will pay handsome money for it!\n<<else>>\nMerchant: Can you sell it to me?\n<<endif>>\n\n-> Sure!\n    Merchant: Excellent!\n<<set $game_state = \"gave cure to shop\">>\n\n-> Maybe later.\n    Merchant: Oh? Please sell it to me when you're ready!\n<<set $Shop_talk += 1>>",
+		"body": "<<if visited(\"Shop.CureFound\") is false>>\n<<set $shop_talk to 0>>\n<<endif>>\n\n<<if $shop_talk == 0>>\nMerchant: Oh! Look at this! What a wonderful find! \nMerchant: I will pay handsome money for it!\n<<else>>\nMerchant: Can you sell it to me?\n<<endif>>\n\n-> Sure!\n    Merchant: Excellent!\n<<set $game_state = \"gave cure to merchant\">>\n\n-> Maybe later.\n    Merchant: Oh? Please sell it to me when you're ready!\n<<set $Shop_talk += 1>>",
 		"position": {
 			"x": 133,
 			"y": 914
